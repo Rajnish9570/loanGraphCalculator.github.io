@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+<style>
+    #graph{
+    height: 500px;
+    width: 500px;
+   
+    text-align: center;
+    padding: 10px;
+    border-radius: 20px;
+}
+ #container{
+    margin:10px;
+    padding: 20px;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 1.2rem;
+ }
+ input{
+    border-radius: 12px;
+    width: 200px;
+    outline: none;
+    border: 2.5px solid gray;
+   font-size: 1.5rem;
+   font-weight: bold;
+   padding: 15px;
+   color: blue;
+
+ }
+ span{
+  color: red;
+ }
+ .calculator-result{
+ font-weight: bold;
+
+ }
+  .calculator-btn{
+    height: auto;
+    width: auto;
+    padding: 20px;
+    background-color: blue;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: white;
+    border: none;
+    outline: none;
+  }
+</style>
+<body>
+    <center>
+   <div id="container">
+        <h2 style="text-align: center;">Loan EMI Calculator</h2>
+    
+        <div class="calculator">
+            <p>    
+                Loan Amount (Rs.): <br>
+                <input type="number" id="loan_amount">
+            </p>
+            
+            <p>
+                Loan Tenure (Month.): <br>
+                <input type="number" id="loan_tenure">
+            </p>
+            
+            <p>
+                Interest Rate (%):  <br>
+                <input type="number" id="loan_interest">
+            </p>
+            
+                <button class="calculator-btn">Calculate EMI</button>
+    
+        </div>
+
+        <p> Principle Amount: <span class="loan_principle"></span> </p>
+
+        <div class="calculator-result">
+              <p> Monthly Loan EMI: <span class="loan_emi"></span> </p>
+              <p> Loan on Interest: <span class="loan_interest_rate"></span> </p>
+               <p> Total Amount to be paid: <span class="loan_total"></span> </p>
+        </div>
+        
+    
+        <div id="graph">
+            
+            <canvas id="loanChart"></canvas>
+            </div>  
+        </div>
+    </center>
+    <script>
+        const loanAmount = document.getElementById("loan_amount");
+const loanTenure = document.getElementById("loan_tenure");
+const loanRate = document.getElementById("loan_interest");
+
+const loanEmi = document.querySelector(".loan_emi");
+const loanPrinciple = document.querySelector(".loan_principle");
+const loanTotal = document.querySelector(".loan_total");
+const loanInterest = document.querySelector(".loan_interest_rate");
+
+
+
+const submitBtn = document.querySelector(".calculator-btn");
+
+submitBtn.addEventListener("click", function(){
+
+    amount = loanAmount.value;
+    tenure = (loanTenure.value); // 1Year = 12 months
+    rate = (loanRate.value)/12/100; // loan rate per year / 100 = loan percentage
+
+    emi = ((amount * rate * (1+rate)**tenure)/(((1+rate)**tenure)-1));
+    //console.log(emi);
+    total = emi * tenure; // total amount to be paid including interest
+    interest = total - amount // interest = total amount - principle amount
+   // console.log(total);
+    //console.log(interest);
+
+    loanEmi.innerHTML = Math.floor(emi);
+    loanPrinciple.innerHTML = Math.floor(amount);
+    loanTotal.innerHTML = Math.floor(total);
+    loanInterest.innerHTML = Math.floor(interest);
+
+
+    //Loanchart
+    let xValues = ["Principle",  "Total amount to be paid","Interest",];
+    let yValues = [amount, Math.floor(interest), total];
+
+    let barColors = ["blue", "red", "green"];
+
+    new Chart("loanChart", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets:[{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display:false,
+            }
+        }
+    });
+
+
+});
+
+    </script>
+</body>
+</html>
