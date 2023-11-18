@@ -2,155 +2,142 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> </title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <script>
+        function clickme(){
+    var num1=parseInt(document.getElementById("firstNo").value);
+    var num2=parseInt(document.getElementById("lastNo").value);
+    var num3=parseInt(document.getElementById("difference").value);
+
+    
+    var ave= (num1+num2)/2;
+    var nd= (num2-num1)/num3;
+    var ndigit=nd+1
+
+ 
+    document.getElementById("result").innerHTML=ndigit*ave  ;
+    document.getElementById("resulta").innerHTML=i ;
+ }
+    </script>
 </head>
 <style>
-    #graph{
-    height: 500px;
-    width: 100%;
-    text-align: center;
+    body{
+    margin: 10px;
     padding: 10px;
-    border-radius: 20px;
 }
- #container{
-    margin:10px;
-    padding: 20px;
-   font-family: Arial, Helvetica, sans-serif;
-   font-size: 1.2rem;
- }
- input{
-    border-radius: 12px;
-    width: 200px;
-    outline: none;
-    border: 2.5px solid gray;
-   font-size: 1.5rem;
-   font-weight: bold;
-   padding: 15px;
-   color: blue;
+#inputBox{
+    display: inline;
+   
+}
 
- }
- span{
-  color: red;
- }
- .calculator-result{
- font-weight: bold;
-
- }
-  .calculator-btn{
-    height: auto;
-    width: auto;
-    padding: 20px;
-    background-color: blue;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 900;
-    letter-spacing: 1px;
-    color: white;
-    border: none;
+.input{
+    height: 100px;
+    width: 100px;
+    font-size: 1.7rem;
+    text-align: center;
+    font-weight: 800;
+    border: 1px gray dashed;
     outline: none;
-  }
+    border-radius: 18px;
+}
+h1{
+    color: blue;
+    font-size: 1.5rem;
+}
+
+#result{
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+letter-spacing: 1px;
+}
+img{
+    height:250px ;
+   box-shadow: 1px 2px 10px 1px gray;
+    border-radius: 19px;
+    padding: 5px;
+    margin: 5px;
+}
+p{
+    font-size: 1.5rem;
+}
+#example{
+    background-color: magenta;
+    padding: 5px;
+    font-weight: bold;
+}
+#example2{
+    background-color: darkcyan;
+    padding: 5px;
+    font-weight: bold;
+}
+#example3{
+    background-color: darkmagenta;
+    padding: 5px;
+    font-weight: bold;
+}
+#example4{
+    background-color: rgb(153, 67, 153);
+    padding: 5px;
+    font-weight: bold;
+}
+#exBox{
+    border: 2.5px solid black;
+    
+}
 </style>
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <h1>Calculation (Sum) of Arithmetic Progression</h1>
+    <div id="inputBox">
+        <center>
+        <input type="number" class="input" placeholder="S" name="" id="firstNo" style="background-color: aqua;">
+        <input type="number" class="input" placeholder="E" name="" id="lastNo" style="background-color: aqua;">
+        <input type="number" class="input" placeholder="D" name="" id="difference" style="background-color: aqua;">
+        </center>
+    </div>
+<button type="button" class="btn btn-info" onclick=clickme()>Calculate</button>
+    <p id="result">*******</p>
+    <hr>
+    <h2>Explanation</h2>
+ <p>S = Here we enter the starting value of series.</p>
+ <p>E = Here we enter the ending value of series.</p>
+<p>D = here we enter the difference or gap between series.</p>
+
+<div id="exBox">
+<div id="example">
     <center>
-   <div id="container">
-        <h2 style="text-align: center;">Loan EMI Calculator</h2>
-    
-        <div class="calculator">
-            <p>    
-                Loan Amount (Rs.): <br>
-                <input type="number" id="loan_amount">
-            </p>
-            
-            <p>
-                Loan Tenure (Month.): <br>
-                <input type="number" id="loan_tenure">
-            </p>
-            
-            <p>
-                Interest Rate (%):  <br>
-                <input type="number" id="loan_interest">
-            </p>
-            
-                <button class="calculator-btn">Calculate EMI</button>
-    
-        </div>
-
-        <p> Principle Amount: <span class="loan_principle"></span> </p>
-
-        <div class="calculator-result">
-              <p> Monthly Loan EMI: <span class="loan_emi"></span> </p>
-              <p> Loan on Interest: <span class="loan_interest_rate"></span> </p>
-               <p> Total Amount to be paid: <span class="loan_total"></span> </p>
-        </div>
-        
-    
-        <div id="graph">
-            
-            <canvas id="loanChart"></canvas>
-            </div>  
-        </div>
+    <p>1, 2, 3, 4, 5, 6, 7, 8, 9, 10 <br> here S = 1; E = 10; D = 1</p>
     </center>
-    <script>
-        const loanAmount = document.getElementById("loan_amount");
-const loanTenure = document.getElementById("loan_tenure");
-const loanRate = document.getElementById("loan_interest");
+</div>
 
-const loanEmi = document.querySelector(".loan_emi");
-const loanPrinciple = document.querySelector(".loan_principle");
-const loanTotal = document.querySelector(".loan_total");
-const loanInterest = document.querySelector(".loan_interest_rate");
+<div id="example2">
+    <center>
+    <p>1, 3, 5, 7, 9, 11, 13, 15 <br> here S = 1; E = 15; D = 2</p>
+    </center>
+</div>
 
+<div id="example3">
+    <center>
+    <p>151, 152, 153, 154, 155, 156, 157, 158 <br> here S = 151; E = 158; D = 1</p>
+    </center>
+</div>
 
+<div id="example4">
+    <center>
+    <p>150, 155, 160 ...... 905 <br> here S = 150; E = 905; D = 5</p>
+    </center>
+</div>
+<center>
+    <h3>Mathematics formula</h3>
+    <p>Average= (S+E)/2</p>
+    <p>No. of terms= {(E-S)/D} + 1</p>
+    <p> <strong>Average * No. of terms</strong></p>
+</center>
+</div>
 
-const submitBtn = document.querySelector(".calculator-btn");
-
-submitBtn.addEventListener("click", function(){
-
-    amount = loanAmount.value;
-    tenure = (loanTenure.value); // 1Year = 12 months
-    rate = (loanRate.value)/12/100; // loan rate per year / 100 = loan percentage
-
-    emi = ((amount * rate * (1+rate)**tenure)/(((1+rate)**tenure)-1));
-    //console.log(emi);
-    total = emi * tenure; // total amount to be paid including interest
-    interest = total - amount // interest = total amount - principle amount
-   // console.log(total);
-    //console.log(interest);
-
-    loanEmi.innerHTML = Math.floor(emi);
-    loanPrinciple.innerHTML = Math.floor(amount);
-    loanTotal.innerHTML = Math.floor(total);
-    loanInterest.innerHTML = Math.floor(interest);
-
-
-    //Loanchart
-    let xValues = ["Principle",  "Total amount to be paid","Interest",];
-    let yValues = [amount, Math.floor(interest), total];
-
-    let barColors = ["blue", "red", "green"];
-
-    new Chart("loanChart", {
-        type: "pie",
-        data: {
-            labels: xValues,
-            datasets:[{
-                backgroundColor: barColors,
-                data: yValues
-            }]
-        },
-        options: {
-            title: {
-                display:false,
-            }
-        }
-    });
-
-
-});
-
-    </script>
 </body>
 </html>
